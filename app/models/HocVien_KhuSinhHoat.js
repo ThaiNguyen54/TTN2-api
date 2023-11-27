@@ -4,6 +4,12 @@ import HocVien from "./HocVien.js";
 import KhuSinhHoat from "./KhuSinhHoat.js";
 
 let HocVien_KhuSinhHoat = MySQLSequelize.define('HocVien_KhuSinhHoat', {
+    id: {
+        type: Sequelize.BIGINT(10),
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     id_khu_sh: {
         type: Sequelize.BIGINT(10),
         references: {

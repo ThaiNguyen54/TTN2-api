@@ -214,7 +214,7 @@ alter table MoiQuanHe add constraint MoiQuanHe_NguoiThan foreign key (id_nguoi_t
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_HocVien foreign key (cccd) references HocVien(cccd);
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat foreign key (id_khu_sh) references KhuSinhHoat(id);
 
-select * from HocVien;
+select * from KhuSinhHoat;
 delete from HocVien;
 
 # create table test (

@@ -8,6 +8,7 @@ import sql from 'mysql';
 // Our components
 import DatabaseConfig from './app/config/Database.js'
 import HocVienRoute from "./app/route/HocVienRoute.js";
+import KhuSinhHoatRoute from "./app/route/KhuSinhHoatRoute.js";
 
 let App = Express()
 
@@ -27,6 +28,7 @@ App.use(cors())
 
 // Routes for APIs
 App.use(HocVienRoute)
+App.use(KhuSinhHoatRoute)
 
 // Connect to database
 let conn = sql.createConnection(DatabaseConfig.mysql)

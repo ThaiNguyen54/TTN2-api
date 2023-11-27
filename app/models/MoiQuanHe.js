@@ -4,6 +4,12 @@ import NguoiThan from "./NguoiThan.js";
 import HocVien from "./HocVien.js";
 
 let MoiQuanHe = MySQLSequelize.define('MoiQuanHe', {
+    id: {
+        type: Sequelize.BIGINT(10),
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     id_nguoi_than: {
         type: Sequelize.BIGINT(10),
         references: {

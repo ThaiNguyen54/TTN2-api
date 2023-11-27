@@ -5,6 +5,12 @@ import HocVien_CNTuNguyen from "./HocVien_CNTuNguyen.js";
 import HocVien_CNBatBuoc from "./HocVien_CNBatBuoc.js";
 
 let KhenThuong = MySQLSequelize.define('KhenThuong', {
+    id: {
+        type: Sequelize.BIGINT(10),
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     cccd: {
         type: Sequelize.STRING(255),
         references: {
