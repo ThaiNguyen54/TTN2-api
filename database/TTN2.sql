@@ -72,17 +72,17 @@ create table HV_CNBatBuoc (
     id int auto_increment,
     cccd varchar(255),
     LyDoGiam varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    ThoiGianChapHanh int,
-    SoQuyetDinhTamGiu int,
+    ThoiGianChapHanh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    SoQuyetDinhTamGiu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayKyQuyetDinhTamGiu date,
     NgayCoKetQuaNghien date,
     NgayHoanThanhXacDinhTinhTrangNghien date,
     KetQua varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    SoQuyetDinhQuanLy int,
+    SoQuyetDinhQuanLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayKyQuyetDinh date,
     TienAn varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ToiDanh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    ThoiHanTu int,
+    ThoiHanTu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TienSu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NoiCaiNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     LoaiTaiSan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -90,17 +90,17 @@ create table HV_CNBatBuoc (
     BanGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayGiaoTaiSan date ,
     NgayHop date,
-    GioHop int,
+    GioHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     HinhThucHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThuKyPhienHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     Hoan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     KhieuNai varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TinhTrangXuLyDonVangMat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    ThoiHanQuyetDinh int,
+    ThoiHanQuyetDinh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NoiChapHanhQuyetDinh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CongVanDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayDiLy date,
-    ThoiGianDiLy int,
+    ThoiGianDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     SoQuyetDinhDuaRaKhoiCoSo varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayNhapLaiCatGiam date,
     SoQuyetDinhToaAn varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -174,8 +174,10 @@ create table HocVien_KhuSinhHoat (
 
 create table NguoiThan (
     id int auto_increment primary key ,
-    HoTen varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+    HoTen varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    NgaySinh date
 );
+
 
 create table MoiQuanHe (
     id int auto_increment primary key ,
@@ -214,7 +216,7 @@ alter table MoiQuanHe add constraint MoiQuanHe_NguoiThan foreign key (id_nguoi_t
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_HocVien foreign key (cccd) references HocVien(cccd);
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat foreign key (id_khu_sh) references KhuSinhHoat(id);
 
-select * from KhuSinhHoat;
+select * from HocVien;
 delete from HocVien;
 
 # create table test (

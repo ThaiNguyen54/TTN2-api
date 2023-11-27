@@ -9,6 +9,14 @@ import sql from 'mysql';
 import DatabaseConfig from './app/config/Database.js'
 import HocVienRoute from "./app/route/HocVienRoute.js";
 import KhuSinhHoatRoute from "./app/route/KhuSinhHoatRoute.js";
+import HocVien_CNBatBuocRoute from "./app/route/HocVien_CNBatBuocRoute.js";
+import HocVien_CNTuNguyenRoute from "./app/route/HocVien_CNTuNguyenRoute.js";
+import HocVien_KhuSinhHoatRoute from "./app/route/HocVien_KhuSinhHoatRoute.js";
+import KhenThuongRoute from "./app/route/KhenThuongRoute.js";
+import KyLuatRoute from "./app/route/KyLuatRoute.js";
+import MoiQuanHeRoute from "./app/route/MoiQuanHeRoute.js";
+import NguoiThanRoute from "./app/route/NguoiThanRoute.js";
+import TronVienPhepRoute from "./app/route/TronVienPhepRoute.js";
 
 let App = Express()
 
@@ -27,8 +35,16 @@ App.use(bodyParser.urlencoded({
 App.use(cors())
 
 // Routes for APIs
-App.use(HocVienRoute)
-App.use(KhuSinhHoatRoute)
+App.use(HocVienRoute);
+App.use(KhuSinhHoatRoute);
+App.use(HocVien_CNBatBuocRoute);
+App.use(HocVien_CNTuNguyenRoute);
+App.use(HocVien_KhuSinhHoatRoute);
+App.use(KhenThuongRoute);
+App.use(KyLuatRoute);
+App.use(MoiQuanHeRoute);
+App.use(NguoiThanRoute);
+App.use(TronVienPhepRoute);
 
 // Connect to database
 let conn = sql.createConnection(DatabaseConfig.mysql)

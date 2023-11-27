@@ -20,11 +20,11 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true
     },
     ThoiGianChapHanh: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(255),
         allowNull: true
     } ,
     SoQuyetDinhTamGiu: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     NgayKyQuyetDinhTamGiu: {
@@ -44,7 +44,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true
     },
     SoQuyetDinhQuanLy: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     NgayKyQuyetDinh: {
@@ -60,7 +60,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true
     },
     ThoiHanTu: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     TienSu: {
@@ -92,7 +92,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true,
     },
     GioHop: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     HinhThucHop: {
@@ -116,7 +116,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true
     },
     ThoiHanQuyetDinh: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     NoiChapHanhQuyetDinh: {
@@ -132,7 +132,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true,
     },
     ThoiGianDiLy: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     SoQuyetDinhDuaRaKhoiCoSo: {

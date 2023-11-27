@@ -11,6 +11,10 @@ let NguoiThan = MySQLSequelize.define('NguoiThan', {
     HoTen: {
         type: Sequelize.STRING(255),
         allowNull: true
+    },
+    NgaySinh: {
+        type: Sequelize.DATE,
+        allowNull: true
     }
 }, {
     paranoid: false,

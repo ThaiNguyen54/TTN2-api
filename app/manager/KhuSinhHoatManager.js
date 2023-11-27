@@ -11,9 +11,9 @@ export function AddKhuSinhHoat (data, callback) {
             return callback(2, 'invalid_name', 400, 'Tên khu sinh hoạt phải là ký tự', null);
         }
 
-        KhuSinhHoat.create(data).then(hocvien => {
+        KhuSinhHoat.create(data).then(khusinhoat => {
             "use strict";
-            return callback(null, null, 200, null, hocvien);
+            return callback(null, null, 200, null, khusinhoat);
         }).catch(function (error) {
             "use-strict";
             return callback(2, 'add_khu_sinh_hoat_fail', 400, error, null);
