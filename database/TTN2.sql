@@ -58,11 +58,11 @@ create table HV_CNTuNguyen (
     cccd varchar(255),
     TuNguyenDongPhi varchar(255)  character set utf8mb4 collate utf8mb4_unicode_ci,
     TuNguyenTaiCongDong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    SoHopDong int,
+    SoHopDong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NguoiGiamHo varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThoiHanHopDong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayThanLyHopDong date,
-    SoGiayHoanThanh int,
+    SoGiayHoanThanh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CacGiaiDoanCaiNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayBatDauCaiNghien date,
     constraint primary key (id, cccd)
@@ -113,7 +113,7 @@ create table KyLuat (
     cccd varchar(255),
     SoQuyetDinhKyLuat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayRaQuyetDinh date,
-    ThoiHanKyLuat int,
+    ThoiHanKyLuat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayViPham date,
     NgayHetHanKyLuat date,
     HinhThucKyLuat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -197,13 +197,16 @@ alter table KhenThuong add constraint KhenThuong_HV_CNBatBuoc foreign key (id_do
 alter table KhenThuong add constraint KhenThuong_HV_CNTuNguyen foreign key (id_dot_cntn) references HV_CNTuNguyen(id);
 alter table KhenThuong add constraint KhenThuong_HocVien foreign key (cccd) references HocVien(cccd);
 
+
 alter table BanGiao add constraint BanGiao_HV_CNBatBuoc foreign key (id_dot_cnbb) references HV_CNBatBuoc(id);
 alter table BanGiao add constraint BanGiao_HV_CNTuNguyen foreign key (id_dot_cntn) references HV_CNTuNguyen(id);
 alter table BanGiao add constraint BanGiao_HocVien foreign key(cccd) references HocVien(cccd);
 
+
 alter table TronVienPhep add constraint TronVienPhep_HV_CNBatBuoc foreign key (id_dot_cnbb) references HV_CNBatBuoc(id);
 alter table TronVienPhep add constraint TronVienPhep_HV_CNTuNguyen foreign key (id_dot_cntn) references HV_CNTuNguyen(id);
 alter table TronVienPhep add constraint TronVienPhep_HocVien foreign key (cccd) references HocVien(cccd);
+
 
 alter table MoiQuanHe add constraint MoiQuanHe_HocVien foreign key (cccd) references HocVien(cccd);
 alter table MoiQuanHe add constraint MoiQuanHe_NguoiThan foreign key (id_nguoi_than) references NguoiThan(id);
