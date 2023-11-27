@@ -17,6 +17,7 @@ import KyLuatRoute from "./app/route/KyLuatRoute.js";
 import MoiQuanHeRoute from "./app/route/MoiQuanHeRoute.js";
 import NguoiThanRoute from "./app/route/NguoiThanRoute.js";
 import TronVienPhepRoute from "./app/route/TronVienPhepRoute.js";
+import BanGiaoRoute from "./app/route/BanGiaoRoute.js";
 
 let App = Express()
 
@@ -45,6 +46,7 @@ App.use(KyLuatRoute);
 App.use(MoiQuanHeRoute);
 App.use(NguoiThanRoute);
 App.use(TronVienPhepRoute);
+App.use(BanGiaoRoute)
 
 // Connect to database
 let conn = sql.createConnection(DatabaseConfig.mysql)

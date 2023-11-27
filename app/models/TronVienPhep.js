@@ -36,6 +36,7 @@ let TronVienPhep = MySQLSequelize.define('TronVienPhep', {
     },
     id_dot_cntn: {
         type: Sequelize.BIGINT(10),
+        default: null,
         references: {
             model: HocVien_CNTuNguyen,
             key: 'id'
@@ -43,6 +44,7 @@ let TronVienPhep = MySQLSequelize.define('TronVienPhep', {
     },
     id_dot_cnbb: {
         type: Sequelize.BIGINT(10),
+        default: null,
         references: {
             model: HocVien_CNBatBuoc,
             key: 'id'

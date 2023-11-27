@@ -10,7 +10,7 @@ export function AddHocVien (req, res) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
         } else {
-            return Rest.SendSuccess(res, req.body.cccd, httpCode)
+            return Rest.SendSuccess(res, req.body, httpCode)
         }
     })
 }

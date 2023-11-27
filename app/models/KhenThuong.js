@@ -32,6 +32,7 @@ let KhenThuong = MySQLSequelize.define('KhenThuong', {
     },
     id_dot_cntn: {
         type: Sequelize.BIGINT(10),
+        default: null,
         references: {
             model: HocVien_CNTuNguyen,
             key: 'id'
@@ -39,6 +40,7 @@ let KhenThuong = MySQLSequelize.define('KhenThuong', {
     },
     id_dot_cnbb: {
         type: Sequelize.BIGINT(10),
+        default: null,
         references: {
             model: HocVien_CNBatBuoc,
             key: 'id'
