@@ -36,6 +36,7 @@ create table HocVien (
     SoLanCai int,
     DienThoai varchar(255),
     DieuTriARV varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    LyDoGiam varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CoQuanBanGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThanhPhanGiaDinh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CoQuanXacDinhTinhTrangNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -46,9 +47,10 @@ create table HocVien (
     NguyenNhanTaiNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThanhPhanBanThan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TinhTrangViecLam varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    TrongNhapLai varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    TronNhapLai varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NhapMoi varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    GhiChu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+    GhiChu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    createdAt date
 );
 
 
@@ -174,7 +176,7 @@ create table HocVien_KhuSinhHoat (
 
 create table NguoiThan (
     id int auto_increment primary key ,
-    HoTen varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    HoTenNguoiThan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgaySinh date
 );
 

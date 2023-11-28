@@ -33,7 +33,13 @@ App.use(bodyParser.urlencoded({
 }))
 
 // Allow CORS
-App.use(cors())
+const corsOption = {
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false,
+    'optionsSuccessStatus': 200,
+};
+App.use(cors(corsOption))
 
 // Routes for APIs
 App.use(HocVienRoute);
@@ -56,7 +62,7 @@ conn.connect(function (err) {
 })
 
 // Create port
-const Port = 3000
+const Port = 3001
 
 
 App.listen(Port, () => {

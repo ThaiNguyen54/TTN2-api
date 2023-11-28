@@ -3,8 +3,11 @@
 // Our components
 import * as HVManager from '../manager/HocVienManager.js'
 import * as Rest from '../utils/Rest.js'
+import * as Helper from '../utils/Helper.js'
 
 export function AddHocVien (req, res) {
+    req.body.Tuoi = Helper.GetAge(req.body.NgaySinh)
+    console.log(req.body)
 
     HVManager.AddHocVien(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {
@@ -13,6 +16,7 @@ export function AddHocVien (req, res) {
             return Rest.SendSuccess(res, req.body.cccd, httpCode)
         }
     })
+    return Rest.SendSuccess();
 }
 
 export function GetAllHocVien (req, res) {

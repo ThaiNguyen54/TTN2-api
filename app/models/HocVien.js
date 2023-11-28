@@ -58,6 +58,10 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
+    Huyen: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     TinhTrangHN: {
         type: Sequelize.STRING(255),
         allowNull: true
@@ -126,6 +130,10 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(1000),
         allowNull: true
     },
+    LyDoGiam: {
+        type: Sequelize.STRING(1000),
+        allowNull: true
+    },
     CoQuanBanGiao: {
         type: Sequelize.STRING(1000),
         allowNull: true
@@ -166,7 +174,7 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(1000),
         allowNull: true
     },
-    TrongNhapLai: {
+    TronNhapLai: {
         type: Sequelize.STRING(1000),
         allowNull: true
     },
@@ -177,12 +185,15 @@ let HocVien = MySQLSequelize.define('HocVien', {
     GhiChu: {
         type: Sequelize.STRING(1000),
         allowNull: true
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
     paranoid: false,
     freezeTableName: true,
     updatedAt: false,
-    createdAt: false,
     tableName: 'HocVien'
 });
 
