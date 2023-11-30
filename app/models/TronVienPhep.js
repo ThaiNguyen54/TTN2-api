@@ -52,7 +52,7 @@ let TronVienPhep = MySQLSequelize.define('TronVienPhep', {
     },
     createdAt: {
         type: Sequelize.DATE,
-        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true
     },
     createdBy: {

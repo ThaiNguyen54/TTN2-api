@@ -39,7 +39,7 @@ let HocVien_KhuSinhHoat = MySQLSequelize.define('HocVien_KhuSinhHoat', {
     },
     createdAt: {
         type: Sequelize.DATE,
-        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true
     },
     createdBy: {

@@ -8,7 +8,7 @@ import HocVien from "../models/HocVien.js";
 
 export function AddHocVien (req, res) {
     req.body.Tuoi = Helper.GetAge(req.body.NgaySinh)
-    HocVien.find({
+    HocVien.findOne({
         where: {
             cccd: req.body.cccd
         }
