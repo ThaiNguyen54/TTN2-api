@@ -11,6 +11,23 @@ let KhuSinhHoat = MySQLSequelize.define('KhuSinhHoat', {
     TenKhu: {
         type: Sequelize.STRING(255),
         allowNull: false,
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: true
+    },
+    createdBy: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+    },
+    updatedBy: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     paranoid: false,

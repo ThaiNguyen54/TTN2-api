@@ -49,6 +49,23 @@ let TronVienPhep = MySQLSequelize.define('TronVienPhep', {
             model: HocVien_CNBatBuoc,
             key: 'id'
         }
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: true
+    },
+    createdBy: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+    },
+    updatedBy: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     paranoid: false,

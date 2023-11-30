@@ -36,7 +36,11 @@ let HocVien_CNTuNguyen = MySQLSequelize.define('HV_CNTuNguyen', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
-    NgayThanLyHopDong: {
+    NgayThanhLyHopDong: {
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
+    NgayCapGiayHoanThanh: {
         type: Sequelize.DATE,
         allowNull: true,
     },
@@ -50,7 +54,25 @@ let HocVien_CNTuNguyen = MySQLSequelize.define('HV_CNTuNguyen', {
     },
     NgayBatDauCaiNghien: {
         type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true,
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: true
+    },
+    createdBy: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+    },
+    updatedBy: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     paranoid: false,

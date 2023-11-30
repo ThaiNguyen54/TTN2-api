@@ -15,6 +15,23 @@ let NguoiThan = MySQLSequelize.define('NguoiThan', {
     NgaySinh: {
         type: Sequelize.DATE,
         allowNull: true
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        default: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: true
+    },
+    createdBy: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
+    },
+    updatedBy: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 }, {
     paranoid: false,
