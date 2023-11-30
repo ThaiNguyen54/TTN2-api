@@ -63,6 +63,10 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
+    SoLanCai: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     TienSu: {
         type: Sequelize.STRING(255),
         allowNull: true
@@ -99,6 +103,10 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
+    ThamPhanPhienHop: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     ThuKyPhienHop: {
         type: Sequelize.STRING(255),
         allowNull: true
@@ -131,7 +139,15 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         type: Sequelize.DATE,
         allowNull: true,
     },
+    CoQuanNhan: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     ThoiGianDiLy: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
+    ThoiGianGiaHanDiLy: {
         type: Sequelize.STRING(255),
         allowNull: true
     },

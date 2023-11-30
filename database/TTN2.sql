@@ -102,6 +102,7 @@ create table HV_CNBatBuoc (
     TienAn varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ToiDanh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThoiHanTu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    SoLanCai varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TienSu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NoiCaiNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     LoaiTaiSan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -111,6 +112,7 @@ create table HV_CNBatBuoc (
     NgayHop date,
     GioHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     HinhThucHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    ThamPhanPhienHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThuKyPhienHop varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     Hoan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     KhieuNai varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -119,7 +121,9 @@ create table HV_CNBatBuoc (
     NoiChapHanhQuyetDinh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CongVanDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayDiLy date,
+    CoQuanNhan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThoiGianDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    ThoiGianGiaHanDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     SoQuyetDinhDuaRaKhoiCoSo varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayNhapLaiCatGiam date,
     SoQuyetDinhToaAn varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -129,6 +133,8 @@ create table HV_CNBatBuoc (
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     constraint primary key (id, cccd)
 );
+
+alter table HV_CNBatBuoc add column ThoiGianGiaHanDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci;
 
 
 create table KyLuat (
