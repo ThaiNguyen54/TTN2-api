@@ -5,7 +5,6 @@ import * as HocVien_CNTuNguyenManager from "../manager/HocVien_CNTuNguyenManager
 import * as Rest from '../utils/Rest.js'
 
 export function AddHocVien_CNTN (req, res) {
-    console.log(req.body)
 
     HocVien_CNTuNguyenManager.AddHocVien_CNTuNguyen(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {

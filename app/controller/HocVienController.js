@@ -25,8 +25,6 @@ export function AddHocVien (req, res) {
             return Rest.SendSuccess(res, req.body.cccd, 200, 'Học Viên Đã Tồn Tại')
         }
     })
-
-
 }
 
 export function GetAllHocVien (req, res) {
