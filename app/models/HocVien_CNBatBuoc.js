@@ -3,7 +3,7 @@ import Sequelize from "sequelize";
 import HocVien from "./HocVien.js";
 let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
     id: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         autoIncrement: true,
         allowNull: false,
         primaryKey: true

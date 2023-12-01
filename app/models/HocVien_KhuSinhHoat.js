@@ -11,7 +11,7 @@ let HocVien_KhuSinhHoat = MySQLSequelize.define('HocVien_KhuSinhHoat', {
         primaryKey: true
     },
     id_khu_sh: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         references: {
             model: KhuSinhHoat,
             key: 'id'

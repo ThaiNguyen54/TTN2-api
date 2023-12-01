@@ -5,6 +5,7 @@ import * as TronVienPhepManager from "../manager/TronVienPhepManager.js";
 import * as Rest from '../utils/Rest.js'
 
 export function AddTronVienPhep (req, res) {
+    console.log(req.body)
 
     TronVienPhepManager.AddTronVienPhep(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {

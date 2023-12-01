@@ -56,18 +56,8 @@ create table HocVien (
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
 );
 
-# alter table TronVienPhep
-#     add column createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-#     add column updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-#     add column updatedAt date,
-#     add column createdAt date;
-
-
-
-
-
 create table HV_CNTuNguyen (
-    id int auto_increment,
+    id varchar(255),
     cccd varchar(255),
     TuNguyenDongPhi varchar(255)  character set utf8mb4 collate utf8mb4_unicode_ci,
     TuNguyenTaiCongDong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -83,12 +73,11 @@ create table HV_CNTuNguyen (
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    constraint primary key (id, cccd)
+    constraint primary key (id)
 );
-# alter table HV_CNTuNguyen change NgayThanLyHopDong NgayThanhLyHopDong date;
 
 create table HV_CNBatBuoc (
-    id int auto_increment,
+    id varchar(255),
     cccd varchar(255),
     LyDoGiam varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThoiGianChapHanh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -131,14 +120,11 @@ create table HV_CNBatBuoc (
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    constraint primary key (id, cccd)
+    constraint primary key (id)
 );
 
-alter table HV_CNBatBuoc add column ThoiGianGiaHanDiLy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci;
-
-
 create table KyLuat (
-    id int auto_increment primary key ,
+    id int auto_increment primary key,
     cccd varchar(255),
     SoQuyetDinhKyLuat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayRaQuyetDinh date,
@@ -147,8 +133,8 @@ create table KyLuat (
     NgayHetHanKyLuat date,
     HinhThucKyLuat varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     HanhViViPham varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    id_dot_cntn int,
-    id_dot_cnbb int,
+    id_dot_cntn varchar(255),
+    id_dot_cnbb varchar(255),
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
@@ -161,8 +147,8 @@ create table KhenThuong (
     SoQuyetDinhKhenThuong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayRaQuyetDinh date,
     HinhThucKhenThuong varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    id_dot_cntn int,
-    id_dot_cnbb int,
+    id_dot_cntn varchar(255),
+    id_dot_cnbb varchar(255),
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
@@ -174,14 +160,15 @@ create table BanGiao (
     cccd varchar(255),
     SoVanBanBanGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayRaVanBan date,
+    NgayBanGiao date,
     LyDoBanGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CanBoBenNhan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CoQuanNhan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ThongTinLienLacBenNhan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     CanBoGiaiQuyet varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     LanhDaoChucVu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    id_dot_cntn int,
-    id_dot_cnbb int,
+    id_dot_cntn varchar(255),
+    id_dot_cnbb varchar(255),
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
@@ -195,8 +182,8 @@ create table TronVienPhep (
     SoThongBao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayRaThongBao date,
     NgayCatGiam date,
-    id_dot_cntn int,
-    id_dot_cnbb int,
+    id_dot_cntn varchar(255),
+    id_dot_cnbb varchar(255),
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
@@ -204,7 +191,7 @@ create table TronVienPhep (
 );
 
 create table KhuSinhHoat (
-    id int auto_increment primary key ,
+    id varchar(255) primary key ,
     TenKhu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -214,7 +201,7 @@ create table KhuSinhHoat (
 
 create table HocVien_KhuSinhHoat (
     id int auto_increment primary key ,
-    id_khu_sh int,
+    id_khu_sh varchar(255),
     cccd varchar(255),
     NgayBatDauO date,
     NgayChuyenKhu date,
@@ -226,7 +213,7 @@ create table HocVien_KhuSinhHoat (
 );
 
 create table NguoiThan (
-    id int auto_increment primary key ,
+    id varchar(255) primary key ,
     HoTenNguoiThan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgaySinh date,
     createdAt date,
@@ -238,7 +225,7 @@ create table NguoiThan (
 
 create table MoiQuanHe (
     id int auto_increment primary key ,
-    id_nguoi_than int,
+    id_nguoi_than varchar(255),
     cccd varchar(255),
     MoiQuanHe varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     createdAt date,
@@ -279,11 +266,3 @@ alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat f
 
 select * from HocVien;
 delete from HocVien;
-
-# create table test (
-# ngay date
-# );
-# drop table test;
-
--- -- upercase the letter Y
-# insert into test (ngay) values (STR_TO_DATE('07-11-1000', '%d-%m-%Y'));

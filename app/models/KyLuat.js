@@ -47,7 +47,7 @@ let KyLuat = MySQLSequelize.define('KyLuat', {
         allowNull: true
     },
     id_dot_cntn: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         default: null,
         references: {
             model: HocVien_CNTuNguyen,
@@ -55,7 +55,7 @@ let KyLuat = MySQLSequelize.define('KyLuat', {
         }
     },
     id_dot_cnbb: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         default: null,
         references: {
             model: HocVien_CNBatBuoc,

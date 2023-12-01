@@ -26,6 +26,10 @@ let BanGiao = MySQLSequelize.define('BanGiao', {
         type: Sequelize.DATE,
         allowNull: true,
     },
+    NgayBanGiao: {
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
     LyDoBanGiao: {
         type: Sequelize.STRING(255),
         allowNull: true
@@ -51,7 +55,7 @@ let BanGiao = MySQLSequelize.define('BanGiao', {
         allowNull: true
     },
     id_dot_cntn: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         default: null,
         references: {
             model: HocVien_CNTuNguyen,
@@ -59,7 +63,7 @@ let BanGiao = MySQLSequelize.define('BanGiao', {
         }
     },
     id_dot_cnbb: {
-        type: Sequelize.BIGINT(10),
+        type: Sequelize.STRING(255),
         default: null,
         references: {
             model: HocVien_CNBatBuoc,
