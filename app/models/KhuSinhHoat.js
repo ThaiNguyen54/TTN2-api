@@ -3,7 +3,7 @@ import MySQLSequelize from "../utils/Sequelize.js";
 
 let KhuSinhHoat = MySQLSequelize.define('KhuSinhHoat', {
     id: {
-        type: Sequelize.STRING(255),
+        type: Sequelize.BIGINT(10),
         autoIncrement: true,
         allowNull: false,
         primaryKey: true

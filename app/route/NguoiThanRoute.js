@@ -7,5 +7,6 @@ import * as NguoiThanController from '../controller/NguoiThanController.js'
 const router = express.Router()
 
 router.post('/ttn2/v1/nguoithan', NguoiThanController.AddNguoiThan);
+router.post('/ttn2/v1/many/nguoithan', NguoiThanController.AddMultipleNguoiThan);
 // router.get('/ttn2/v1/hocvien', HocVienController.GetAllHocVien);
 export default router

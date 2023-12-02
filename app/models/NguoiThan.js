@@ -1,19 +1,36 @@
 import Sequelize from "sequelize";
 import MySQLSequelize from "../utils/Sequelize.js";
+import HocVien from "./HocVien.js";
 
 let NguoiThan = MySQLSequelize.define('NguoiThan', {
     id: {
-        type: Sequelize.STRING(255),
-        autoIncrement: true,
+        type: Sequelize.BIGINT,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    HoTen: {
+    cccdHocVien: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+        references: {
+            model: HocVien,
+            key: 'cccd'
+        }
+    },
+    MoiQuanHe: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
+    HoTenNguoiThan: {
         type: Sequelize.STRING(255),
         allowNull: true
     },
     NgaySinh: {
         type: Sequelize.DATE,
+        allowNull: true
+    },
+    NoiO: {
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     createdAt: {

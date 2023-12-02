@@ -163,6 +163,34 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
+    NgayChuyenCoSo: {
+        type: Sequelize.DATE,
+        allowNull: true
+    },
+    CanBoBanGiao: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
+    NoiChuyenVien: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    } ,
+    NgayChuyenVien: {
+        type: Sequelize.DATE,
+        allowNull: true
+    } ,
+    NgayNhapLai: {
+        type: Sequelize.DATE,
+        allowNull: true
+    } ,
+    ThongTinLienHeGiaDinh: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    } ,
+    GhiChu: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

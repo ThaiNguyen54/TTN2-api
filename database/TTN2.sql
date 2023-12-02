@@ -116,12 +116,20 @@ create table HV_CNBatBuoc (
     SoQuyetDinhDuaRaKhoiCoSo varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgayNhapLaiCatGiam date,
     SoQuyetDinhToaAn varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    NgayChuyenCoSo date,
+    CanBoBanGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    NoiChuyenVien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    NgayChuyenVien date,
+    NgayNhapLai date,
+    ThongTinLienHeGiaDinh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    GhiChu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     updatedAt date,
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     constraint primary key (id)
 );
+
 
 create table KyLuat (
     id int auto_increment primary key,
@@ -191,7 +199,7 @@ create table TronVienPhep (
 );
 
 create table KhuSinhHoat (
-    id varchar(255) primary key ,
+    id int auto_increment primary key ,
     TenKhu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -201,7 +209,7 @@ create table KhuSinhHoat (
 
 create table HocVien_KhuSinhHoat (
     id int auto_increment primary key ,
-    id_khu_sh varchar(255),
+    id_khu_sh int,
     cccd varchar(255),
     NgayBatDauO date,
     NgayChuyenKhu date,
@@ -213,20 +221,11 @@ create table HocVien_KhuSinhHoat (
 );
 
 create table NguoiThan (
-    id varchar(255) primary key ,
+    id varchar(255) primary key,
+    cccdHocVien varchar(255),
     HoTenNguoiThan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgaySinh date,
-    createdAt date,
-    createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    updatedAt date,
-    updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
-);
-
-
-create table MoiQuanHe (
-    id int auto_increment primary key ,
-    id_nguoi_than varchar(255),
-    cccd varchar(255),
+    NoiO varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     MoiQuanHe varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     createdAt date,
     createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -258,11 +257,10 @@ alter table TronVienPhep add constraint TronVienPhep_HV_CNTuNguyen foreign key (
 alter table TronVienPhep add constraint TronVienPhep_HocVien foreign key (cccd) references HocVien(cccd);
 
 
-alter table MoiQuanHe add constraint MoiQuanHe_HocVien foreign key (cccd) references HocVien(cccd);
-alter table MoiQuanHe add constraint MoiQuanHe_NguoiThan foreign key (id_nguoi_than) references NguoiThan(id);
-
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_HocVien foreign key (cccd) references HocVien(cccd);
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat foreign key (id_khu_sh) references KhuSinhHoat(id);
+
+alter table NguoiThan add constraint NguoiThan_HocVien foreign key (cccdHocVien) references HocVien(cccd);
 
 select * from HocVien;
 delete from HocVien;

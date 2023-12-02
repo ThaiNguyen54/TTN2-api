@@ -4,7 +4,7 @@
 import * as KhuSinhHoatManager from '../manager/KhuSinhHoatManager.js'
 import * as Rest from '../utils/Rest.js'
 
-export function AddHocVien (req, res) {
+export function AddKhuSinhHoat (req, res) {
 
     KhuSinhHoatManager.AddKhuSinhHoat(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {

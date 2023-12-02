@@ -6,7 +6,6 @@ import * as Rest from '../utils/Rest.js'
 import HocVien_CNBatBuoc from "../models/HocVien_CNBatBuoc.js";
 
 export function AddHocVien_CNBB (req, res) {
-    console.log(req.body)
     HocVien_CNBatBuocManager.AddHocVien_CNBatBuoc(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);

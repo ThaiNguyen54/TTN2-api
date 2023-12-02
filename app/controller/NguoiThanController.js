@@ -14,3 +14,14 @@ export function AddNguoiThan (req, res) {
         }
     })
 }
+
+export function AddMultipleNguoiThan (req, res) {
+
+    NguoiThanManager.AddMultipleNguoiThan(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
+        } else {
+            return Rest.SendSuccess(res, req.body, httpCode)
+        }
+    })
+}
