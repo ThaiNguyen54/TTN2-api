@@ -7,5 +7,6 @@ import * as KhuSinhHoatController from '../controller/KhuSinhHoatController.js';
 const router = express.Router()
 
 router.post('/ttn2/v1/khusinhhoat', KhuSinhHoatController.AddKhuSinhHoat);
-// router.get('/ttn2/v1/khusinhhoat', HocVienController.GetAllHocVien);
+router.get('/ttn2/v1/khusinhhoat', KhuSinhHoatController.GetAllKhuSinhHoat);
+router.put('/ttn2/v1/khusinhhoat/:id', KhuSinhHoatController.UpdateKhuSinhHoat);
 export default router

@@ -3,6 +3,7 @@
 // Our components
 import * as KhuSinhHoatManager from '../manager/KhuSinhHoatManager.js'
 import * as Rest from '../utils/Rest.js'
+import * as HVManager from "../manager/HocVienManager.js";
 
 export function AddKhuSinhHoat (req, res) {
 
@@ -12,5 +13,29 @@ export function AddKhuSinhHoat (req, res) {
         } else {
             return Rest.SendSuccess(res, req.body.cccd, httpCode)
         }
+    })
+}
+
+export function GetAllKhuSinhHoat (req, res) {
+    KhuSinhHoatManager.GetAllKhuSinhHoat(function (errorCode, errorMess, httpCode, errorDescription, results) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
+        } else {
+            return Rest.SendSuccess(res, results, httpCode);
+        }
+    });
+}
+
+export function UpdateKhuSinhHoat (req, res) {
+    let id = req.params.id || '';
+
+    let updateData = req.body || '';
+    KhuSinhHoatManager.UpdateKhuSinhHoat(id, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.id = id;
+        return Rest.SendSuccess(res, resData, httpCode);
     })
 }

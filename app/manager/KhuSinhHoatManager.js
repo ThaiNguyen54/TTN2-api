@@ -5,6 +5,8 @@ import moment from 'moment';
 // Our components
 import * as Helper from '../utils/Helper.js'
 import KhuSinhHoat from "../models/KhuSinhHoat.js";
+import HocVien from "../models/HocVien.js";
+import khuSinhHoat from "../models/KhuSinhHoat.js";
 export function AddKhuSinhHoat (data, callback) {
     try {
         if ( !Helper.VariableTypeChecker(data.TenKhu, 'string')) {
@@ -20,5 +22,66 @@ export function AddKhuSinhHoat (data, callback) {
         })
     } catch (error) {
         return callback(2, 'add_khu_sinh_hoat_fail', 400, error, null);
+    }
+}
+
+export function GetAllKhuSinhHoat (callback) {
+    try {
+        KhuSinhHoat.findAndCountAll({
+            attributes: ['id', 'TenKhu']
+        }).then((data) => {
+            let KhuSinhHoat = data.rows;
+            let output = {
+                data: KhuSinhHoat
+            }
+            return callback(null, null, 200, null, output);
+        }).catch(function (error) {
+            return callback(2, 'find_count_all_khusinhhoat_fail', 400, error, null);
+        })
+    } catch (error) {
+        return callback(2, 'find_count_all_khusinhhoat_fail', 400, error, null);
+    }
+}
+
+export function UpdateKhuSinhHoat (khuSinhHoatId, khuSinhHoatData, callback) {
+    try {
+        let queryObj = {};
+        let where = {};
+
+        if (!Helper.VariableTypeChecker(khuSinhHoatId, 'string')
+            && !Helper.VariableTypeChecker(khuSinhHoatId, 'number')) {
+            return callback (2, 'id_khu_sinh_hoat_khong_hop_le', 400, 'id khu sinh hoạt không đúng', null)
+        }
+
+        if (!khuSinhHoatData) {
+            return callback(2, 'dữ liệu truyền vào không đúng', 400, null)
+        }
+
+        where.id = khuSinhHoatId;
+        queryObj.updatedAt = new Date();
+        queryObj.TenKhu = khuSinhHoatData.TenKhu
+
+        KhuSinhHoat.findOne({where: where}).then(khusinhhoat => {
+            "use strict"
+            if(khusinhhoat) {
+                KhuSinhHoat.update(
+                    queryObj,
+                    {where:where}
+                ).then(result => {
+                    console.log(result)
+                    return callback(null, null, 200, null, khuSinhHoatId)
+                }).catch(function (error) {
+                    "use strict"
+                    return callback(2, 'cập_nhật_khu_sinh_hoạt_thất_bại', 400, error, null)
+                })
+            } else {
+                return callback(2, 'khu_sinh_hoạt_không_hợp_lệ', 400, null, null);
+            }
+        }).catch(function (error) {
+            "use strict";
+            return callback(2, 'fin_one_khusinhhaot_fail', 400, error, null);
+        });
+    } catch (error) {
+        return callback(2, 'update_khu_sinh_hoat_fail', 400, error);
     }
 }
