@@ -27,7 +27,11 @@ export function AddHocVien (data, callback) {
 
 export function GetAll (callback) {
     try {
-        HocVien.findAndCountAll().then((data) => {
+        HocVien.findAndCountAll({
+            attributes: {
+                exclude: ['TenDayDu', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy']
+            }
+        }).then((data) => {
             let HocVien = data.rows;
             let output = {
                 data: HocVien

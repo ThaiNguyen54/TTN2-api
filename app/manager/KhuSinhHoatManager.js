@@ -85,3 +85,30 @@ export function UpdateKhuSinhHoat (khuSinhHoatId, khuSinhHoatData, callback) {
         return callback(2, 'update_khu_sinh_hoat_fail', 400, error);
     }
 }
+
+export function DeleteKhuSinhHoat (khuSinhHoatId, callback) {
+    try {
+        let queryObj = {};
+        let where = {};
+
+        if (!Helper.VariableTypeChecker(khuSinhHoatId, 'string') &&
+            !Helper.VariableTypeChecker(khuSinhHoatId, 'number')) {
+            return callback(2, 'ivalid_khusinhhoat_id', 400, 'id of khu-sinh-hoat is incorrect', null);
+        }
+
+        where = {id: khuSinhHoatId};
+        KhuSinhHoat.findOne({where:where}).then(khusinhhoat => {
+            "use strict";
+            KhuSinhHoat.destroy({where:where}).then(result => {
+                return callback(null, null, 200, null);
+            }).catch(function (error) {
+                return callback(2, 'remove_khusinhhoat_failed', 420, error);
+            })
+        }).catch(function (error) {
+            "use strict";
+            return callback(2, 'find_one_khusinhhoat_failed', 400, error, null);
+        });
+    } catch (error) {
+        return callback(2, 'delete_khusinhhoat_failed', 400, error);
+    }
+}

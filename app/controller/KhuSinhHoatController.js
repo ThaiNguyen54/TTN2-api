@@ -39,3 +39,17 @@ export function UpdateKhuSinhHoat (req, res) {
         return Rest.SendSuccess(res, resData, httpCode);
     })
 }
+
+export function DeleteKhuSinhHoat (req, res) {
+    let id = req.params.id || '';
+
+    KhuSinhHoatManager.DeleteKhuSinhHoat(id, function (errorCode, errorMessage, httpCode, errorDescription){
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.id = id;
+        return Rest.SendSuccess(res, resData, httpCode);
+    })
+
+}
