@@ -54,12 +54,12 @@ App.use(NguoiThanRoute);
 App.use(TronVienPhepRoute);
 App.use(BanGiaoRoute)
 
-// Connect to database
-let conn = sql.createConnection(DatabaseConfig.mysql)
-conn.connect(function (err) {
-    if (err) throw err;
-    console.log('Connected')
-})
+// // Connect to database
+// let conn = sql.createConnection(DatabaseConfig.mysql)
+// conn.connect(function (err) {
+//     if (err) throw err;
+//     console.log('Connected')
+// })
 
 // Create port
 const Port = 3001

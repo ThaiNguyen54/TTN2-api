@@ -263,4 +263,4 @@ alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat f
 alter table NguoiThan add constraint NguoiThan_HocVien foreign key (cccdHocVien) references HocVien(cccd);
 
 select * from HocVien;
-delete from HocVien;
+# delete from HocVien;

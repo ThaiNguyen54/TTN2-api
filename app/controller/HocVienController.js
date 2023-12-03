@@ -36,3 +36,50 @@ export function GetAllHocVien (req, res) {
         }
     });
 }
+
+export function FindAllAndContCNHocVien (req, res) {
+    HVManager.FindAllAndCount(function (errorCode, errorMess, httpCode, errorDescription, results) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
+        } else {
+            return Rest.SendSuccess(res, results, httpCode);
+        }
+    });
+}
+
+
+export function UpdateHocVien (req, res) {
+    let cccd = req.params.cccd || '';
+
+    let updateData = req.body || '';
+
+    const fieldToExclude = ['cccd', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'];
+
+     updateData = Object.fromEntries(
+        Object.entries(updateData).filter(([key]) => !fieldToExclude.includes(key))
+    );
+
+    console.log(updateData)
+
+    HVManager.UpdateHocVien(cccd, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.cccd = cccd;
+        return Rest.SendSuccess(res, resData, httpCode);
+    })
+}
+
+export function DeleteHocVien (req, res) {
+    let cccd = req.params.cccd || '';
+
+    HVManager.DeleteHocVien(cccd, function (errorCode, errorMessage, httpCode, errorDescription){
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.cccd = cccd;
+        return Rest.SendSuccess(res, resData, httpCode);
+    })
+}

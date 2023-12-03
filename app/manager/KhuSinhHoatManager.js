@@ -79,7 +79,7 @@ export function UpdateKhuSinhHoat (khuSinhHoatId, khuSinhHoatData, callback) {
             }
         }).catch(function (error) {
             "use strict";
-            return callback(2, 'fin_one_khusinhhaot_fail', 400, error, null);
+            return callback(2, 'find_one_khusinhhoat_fail', 400, error, null);
         });
     } catch (error) {
         return callback(2, 'update_khu_sinh_hoat_fail', 400, error);
