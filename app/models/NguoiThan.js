@@ -4,7 +4,7 @@ import HocVien from "./HocVien.js";
 
 let NguoiThan = MySQLSequelize.define('NguoiThan', {
     id: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.BIGINT(10),
         allowNull: false,
         primaryKey: true,
         autoIncrement: true

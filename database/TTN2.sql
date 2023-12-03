@@ -221,7 +221,7 @@ create table HocVien_KhuSinhHoat (
 );
 
 create table NguoiThan (
-    id varchar(255) primary key,
+    id int auto_increment primary key,
     cccdHocVien varchar(255),
     HoTenNguoiThan varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     NgaySinh date,

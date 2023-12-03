@@ -51,5 +51,4 @@ export function DeleteKhuSinhHoat (req, res) {
         resData.id = id;
         return Rest.SendSuccess(res, resData, httpCode);
     })
-
 }
