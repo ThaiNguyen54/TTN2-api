@@ -14,3 +14,40 @@ export function AddHocVien_KhuSinhHoat (req, res) {
         }
     })
 }
+
+export function GetAllHocVien_KhuSinhHoat (req, res) {
+    HocVien_KhuSinhHoatManager.GetAllHocVienKhuSinhHoat(function (errorCode, errorMess, httpCode, errorDescription, results) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
+        } else {
+            return Rest.SendSuccess(res, results, httpCode);
+        }
+    });
+}
+
+export function UpdateHocVien_KhuSinhHoat (req, res) {
+    let id = req.params.id || '';
+
+    let updateData = req.body || '';
+    HocVien_KhuSinhHoatManager.UpdateHocVienKhuSinhHoat(id, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.id = id;
+        return Rest.SendSuccess(res, resData, httpCode);
+    })
+}
+
+export function DeleteHocVien_KhuSinhHoat (req, res) {
+    let id = req.params.id || '';
+
+    HocVien_KhuSinhHoatManager.DeleteHocVienKhuSinhHoat(id, function (errorCode, errorMessage, httpCode, errorDescription){
+        if (errorCode) {
+            return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
+        }
+        let resData = {};
+        resData.id = id;
+        return Rest.SendSuccess(res, resData, httpCode);
+    })
+}

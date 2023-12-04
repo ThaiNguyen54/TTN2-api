@@ -42,6 +42,7 @@ export function GetAllCNTN (callback) {
             // console.log('Connected')
             conn.query(queryString, function (error, result, fields) {
                 if (err) throw err;
+                console.log(result)
                 let output = {
                     data: result
                 }
