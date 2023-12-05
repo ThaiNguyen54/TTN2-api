@@ -30,11 +30,13 @@ export function AddHocVien_CNBatBuoc (data, callback) {
 export function GetAllCNBB (callback) {
     try {
         const queryString = `
-        select HV_CNBatBuoc.*,
-               HocVien.Ho,
-               HocVien.Ten
-        from HV_CNBatBuoc
-        inner  join HocVien on HV_CNBatBuoc.cccd = HocVien.cccd;`
+              SELECT 
+                    HV_CNBatBuoc.*,
+                    HocVien.Ho,
+                    HocVien.Ten,
+                    DATE_FORMAT(HV_CNBatBuoc.createdAt, "%Y-%m-%d") AS createdAt
+              FROM HV_CNBatBuoc
+              INNER JOIN HocVien ON HV_CNBatBuoc.cccd = HocVien.cccd;`;
 
         let conn = sql.createConnection(DatabaseConfig.mysql)
 
@@ -42,7 +44,9 @@ export function GetAllCNBB (callback) {
             if (err) throw err;
             // console.log('Connected')
             conn.query(queryString, function (error, result, fields) {
-                if (err) throw err;
+                if (err) {
+                    return callback(2, 'get_all_CNBB_fail', 400, error, null);
+                }
                 let output = {
                     data: result
                 }

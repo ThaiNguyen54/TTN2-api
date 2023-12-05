@@ -18,6 +18,9 @@ import MoiQuanHeRoute from "./app/route/MoiQuanHeRoute.js";
 import NguoiThanRoute from "./app/route/NguoiThanRoute.js";
 import TronVienPhepRoute from "./app/route/TronVienPhepRoute.js";
 import BanGiaoRoute from "./app/route/BanGiaoRoute.js";
+import HangHoaRoute from "./app/route/HangHoaRoute.js";
+import NapTienRoute from "./app/route/NapTienRoute.js";
+import ChiTietMuaRoute from "./app/route/ChiTietMuaRoute.js";
 
 let App = Express()
 
@@ -52,7 +55,10 @@ App.use(KyLuatRoute);
 App.use(MoiQuanHeRoute);
 App.use(NguoiThanRoute);
 App.use(TronVienPhepRoute);
-App.use(BanGiaoRoute)
+App.use(BanGiaoRoute);
+App.use(HangHoaRoute);
+App.use(NapTienRoute);
+App.use(ChiTietMuaRoute);
 
 // // Connect to database
 // let conn = sql.createConnection(DatabaseConfig.mysql)

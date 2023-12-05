@@ -31,7 +31,10 @@ export function GetAllCNTN (callback) {
         const queryString = `
         select HV_CNTuNguyen.*,
                HocVien.Ho,
-               HocVien.Ten
+               HocVien.Ten,
+               DATE_FORMAT(HV_CNTuNguyen.NgayThanhLyHopDong, "%Y-%m-%d") AS  NgayThanhLyHopDong,
+               DATE_FORMAT(HV_CNTuNguyen.NgayCapGiayHoanThanh, "%Y-%m-%d") AS  NgayCapGiayHoanThanh,
+               DATE_FORMAT(HV_CNTuNguyen.NgayBatDauCaiNghien, "%Y-%m-%d") AS  NgayBatDauCaiNghien
         from HV_CNTuNguyen
         inner  join HocVien on HV_CNTuNguyen.cccd = HocVien.cccd;`
 

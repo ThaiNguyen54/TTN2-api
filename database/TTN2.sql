@@ -7,7 +7,7 @@ create table HocVien (
     cccd varchar(255) primary key ,
     NgayCapCCCD date,
     NoiCapCCCD varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    SoDu varchar(255),
+    SoDu int,
     Ho varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     Ten varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TenDayDu varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -233,6 +233,40 @@ create table NguoiThan (
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
 );
 
+create table HangHoa (
+    id int auto_increment primary key,
+    TenHangHoa varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    DonGia int,
+    createdAt date,
+    createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    updatedAt date,
+    updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+);
+
+create table ChiTietMua (
+    id int auto_increment primary key,
+    cccd varchar(255),
+    idHangHoa int,
+    SoLuong int,
+    ThanhTien int,
+    createdAt date,
+    createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    updatedAt date,
+    updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+
+);
+
+create table NapTien (
+    id int auto_increment primary key,
+    cccd varchar(255),
+    SoTienNap int,
+    createdAt date,
+    createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    updatedAt date,
+    updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+);
+
+
 -- add foreign keys
 alter table HV_CNTuNguyen add constraint HV_CNTuNguyen_cccd foreign key (cccd) references HocVien(cccd);
 
@@ -261,6 +295,11 @@ alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_HocVien forei
 alter table HocVien_KhuSinhHoat add constraint HocVien_KhuSinhHoat_KhuSinhHoat foreign key (id_khu_sh) references KhuSinhHoat(id);
 
 alter table NguoiThan add constraint NguoiThan_HocVien foreign key (cccdHocVien) references HocVien(cccd);
+
+alter table NapTien add constraint NapTien_HocVien foreign key (cccd) references HocVien(cccd);
+
+alter table ChiTietMua add constraint ChiTietMua_HocVien foreign key (cccd) references HocVien(cccd);
+alter table ChiTietMua add constraint ChiTietMua_HangHoa foreign key (idHangHoa) references HangHoa(id);
 
 select * from HocVien;
 # delete from HocVien;

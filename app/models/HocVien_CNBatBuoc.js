@@ -192,7 +192,7 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: true
     },
     createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true
     },

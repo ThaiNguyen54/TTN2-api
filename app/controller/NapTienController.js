@@ -1,12 +1,12 @@
 // Third party component
 
 // Our components
-import * as KhuSinhHoatManager from '../manager/KhuSinhHoatManager.js'
+import * as NapTienManager from '../manager/NapTienManager.js'
 import * as Rest from '../utils/Rest.js'
 
-export function AddKhuSinhHoat (req, res) {
+export function AddNapTien (req, res) {
 
-    KhuSinhHoatManager.AddKhuSinhHoat(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
+    NapTienManager.AddNapTien(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
         } else {
@@ -15,8 +15,8 @@ export function AddKhuSinhHoat (req, res) {
     })
 }
 
-export function GetAllKhuSinhHoat (req, res) {
-    KhuSinhHoatManager.GetAllKhuSinhHoat(function (errorCode, errorMess, httpCode, errorDescription, results) {
+export function GetAllNapTien (req, res) {
+    NapTienManager.GetAllNapTien(function (errorCode, errorMess, httpCode, errorDescription, results) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
         } else {
@@ -25,11 +25,11 @@ export function GetAllKhuSinhHoat (req, res) {
     });
 }
 
-export function UpdateKhuSinhHoat (req, res) {
+export function UpdateNapTien (req, res) {
     let id = req.params.id || '';
 
     let updateData = req.body || '';
-    KhuSinhHoatManager.UpdateKhuSinhHoat(id, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
+    NapTienManager.UpdateNapTien(id, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
         }
@@ -39,10 +39,10 @@ export function UpdateKhuSinhHoat (req, res) {
     })
 }
 
-export function DeleteKhuSinhHoat (req, res) {
+export function DeleteNapTien (req, res) {
     let id = req.params.id || '';
 
-    KhuSinhHoatManager.DeleteKhuSinhHoat(id, function (errorCode, errorMessage, httpCode, errorDescription){
+    NapTienManager.DeleteNapTien(id, function (errorCode, errorMessage, httpCode, errorDescription){
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
         }
