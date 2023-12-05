@@ -301,5 +301,76 @@ alter table NapTien add constraint NapTien_HocVien foreign key (cccd) references
 alter table ChiTietMua add constraint ChiTietMua_HocVien foreign key (cccd) references HocVien(cccd);
 alter table ChiTietMua add constraint ChiTietMua_HangHoa foreign key (idHangHoa) references HangHoa(id);
 
+################ Trigger Update SoDu ################
+DELIMITER //
+
+CREATE TRIGGER updateSoDu
+AFTER INSERT
+ON NapTien FOR EACH ROW
+
+BEGIN
+    DECLARE currentSoDu INT;
+
+    -- Get the current SoDu value for the corresponding cccd
+    SELECT SoDu INTO currentSoDu
+    FROM HocVien
+    WHERE cccd = NEW.cccd;
+
+    -- Update SoDu by adding the SoTienNap from the inserted record
+    UPDATE HocVien
+    SET SoDu = currentSoDu + NEW.SoTienNap
+    WHERE cccd = NEW.cccd;
+END //
+
+DELIMITER ;
+##########################################################
+
+############# Trigger for Updating SoDu when buy somthing ######################
+DELIMITER //
+
+CREATE TRIGGER SubtractSoDuAfterPurchasing
+AFTER INSERT
+ON ChiTietMua FOR EACH ROW
+
+BEGIN
+    DECLARE currentSoDu INT;
+    DECLARE donGiaHangHoa INT;
+    DECLARE TongTien INT;
+
+    -- Get the current SoDu value for the corresponding cccd
+    SELECT SoDu INTO currentSoDu
+    FROM HocVien
+    WHERE cccd = NEW.cccd;
+
+    -- Get the unit price of each good for the corresponding idHangHoa
+    SELECT HangHoa.DonGia INTO donGiaHangHoa
+    FROM HangHoa
+    WHERE HangHoa.id = NEW.idHangHoa;
+
+    SET TongTien = donGiaHangHoa * NEW.SoLuong;
+
+
+    IF (currentSoDu - TongTien) < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Số tiền không đủ';
+    ELSE
+        -- Update SoDu by adding the SoTienNap from the inserted record
+        UPDATE HocVien
+        SET SoDu = currentSoDu - TongTien
+        WHERE cccd = NEW.cccd;
+    END IF;
+END //
+
+DELIMITER ;
+###################################################################################
+
+insert into NapTien (cccd, SoTienNap) value (1002, 1000000);
+insert into HangHoa (TenHangHoa, DonGia) value ('Trứng', 2000);
+insert into HangHoa (TenHangHoa, DonGia) value ('Sữa', 5000);
+
+insert into ChiTietMua(cccd, idHangHoa, SoLuong) value (1002, 3, 4);
+
 select * from HocVien;
+select * from HangHoa;
+select * from ChiTietMua;
 # delete from HocVien;
