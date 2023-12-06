@@ -59,7 +59,6 @@ export function UpdateHocVien (req, res) {
         Object.entries(updateData).filter(([key]) => !fieldToExclude.includes(key))
     );
 
-    console.log(updateData)
 
     HVManager.UpdateHocVien(cccd, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
         if (errorCode) {

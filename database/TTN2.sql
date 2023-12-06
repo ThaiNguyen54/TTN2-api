@@ -26,7 +26,7 @@ create table HocVien (
     TrinhDo varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     ViecLam varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TonGiao varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
-    HinhAnh varchar(1000) ,
+    HinhAnh varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci ,
     NamSudung int,
     HinhThucSuDung varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
     TinhTrangNghien varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,

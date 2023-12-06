@@ -91,7 +91,7 @@ let HocVien = MySQLSequelize.define('HocVien', {
         allowNull: true
     },
     HinhAnh: {
-        type: Sequelize.STRING(1000),
+        type: Sequelize.STRING(255),
         allowNull: true
     },
     NamSudung: {

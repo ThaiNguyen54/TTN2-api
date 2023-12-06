@@ -3,3 +3,5 @@ database/.idea/
 package-lock.json
 test-api.json
 .idea/
+StudentImage/
+.env

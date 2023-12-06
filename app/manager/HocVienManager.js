@@ -5,12 +5,22 @@ import sql from 'mysql'
 import * as Helper from '../utils/Helper.js'
 import HocVien from "../models/HocVien.js";
 import DatabaseConfig from '../config/Database.js'
+import { v2 as cloudinary } from 'cloudinary'
+import CloudinaryConfig from "../config/Cloudinary.js";
 
-export function AddHocVien (data, callback) {
+cloudinary.config(CloudinaryConfig)
+
+export async function AddHocVien(data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
+        if (!Helper.VariableTypeChecker(data.cccd, 'string')) {
             return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
         }
+
+        const res = await cloudinary.uploader.upload(data.HinhAnh, {
+            resource_type: 'auto',
+            folder: 'ttn2'
+        })
+        data.HinhAnh = res.secure_url
 
         HocVien.create(data).then(hocvien => {
             "use strict";
@@ -49,7 +59,10 @@ export async function FindAllAndCount(callback) {
         const queryString = `
       SELECT HocVien.*, 
              COUNT(HV_CNTuNguyen.cccd) AS Count_CNTuNguyen,
-             COUNT(HV_CNBatBuoc.cccd) AS Count_CNBatBuoc
+             COUNT(HV_CNBatBuoc.cccd) AS Count_CNBatBuoc,
+             DATE_FORMAT(HocVien.NgayCapCCCD, "%Y-%m-%d") AS NgayCapCCCD,
+             DATE_FORMAT(HocVien.NgaySinh, "%Y-%m-%d") AS NgaySinh,
+             DATE_FORMAT(HocVien.createdAt, "%Y-%m-%d") AS createdAt
       FROM HocVien
       LEFT JOIN HV_CNTuNguyen ON HocVien.cccd = HV_CNTuNguyen.cccd
       LEFT JOIN HV_CNBatBuoc ON HocVien.cccd = HV_CNBatBuoc.cccd
@@ -60,8 +73,11 @@ export async function FindAllAndCount(callback) {
         conn.connect(function (err) {
             if (err) throw err;
             // console.log('Connected')
-            conn.query(queryString, function (error, result, fields) {
-                if (err) throw err;
+            conn.query(queryString, async function (error, result, fields) {
+                if (err) {
+                    return callback(2, 'get_all_and_count_fail', 400, error, null);
+                }
+
                 let output = {
                     data: result
                 }
@@ -73,14 +89,14 @@ export async function FindAllAndCount(callback) {
     }
 }
 
-export function UpdateHocVien (cccd, hocVienData, callback) {
+export async function UpdateHocVien(cccd, hocVienData, callback) {
     try {
         let queryObj = {};
         let where = {};
 
         if (!Helper.VariableTypeChecker(cccd, 'string')
             && !Helper.VariableTypeChecker(cccd, 'number')) {
-            return callback (2, 'id_hoc_vien_khong_hop_le', 400, 'id học viên không đúng', null)
+            return callback(2, 'id_hoc_vien_khong_hop_le', 400, 'id học viên không đúng', null)
         }
 
         if (!hocVienData) {
@@ -88,9 +104,16 @@ export function UpdateHocVien (cccd, hocVienData, callback) {
         }
 
         where.cccd = cccd;
-        console.log('this is cccd: ', cccd)
         queryObj.updatedAt = new Date();
         queryObj = hocVienData
+
+        if (hocVienData.HinhAnh !== null) {
+            const res = await cloudinary.uploader.upload(hocVienData.HinhAnh, {
+                resource_type: 'auto',
+                folder: 'ttn2'
+            })
+            queryObj.HinhAnh = res.secure_url
+        }
 
         HocVien.findOne({where: where}).then(hocvien => {
             "use strict"
