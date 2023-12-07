@@ -21,6 +21,8 @@ import BanGiaoRoute from "./app/route/BanGiaoRoute.js";
 import HangHoaRoute from "./app/route/HangHoaRoute.js";
 import NapTienRoute from "./app/route/NapTienRoute.js";
 import ChiTietMuaRoute from "./app/route/ChiTietMuaRoute.js";
+import ThamGapRoute from "./app/route/ThamGapRoute.js";
+import AdminRoute from "./app/route/AdminRoute.js";
 
 let App = Express()
 
@@ -59,6 +61,8 @@ App.use(BanGiaoRoute);
 App.use(HangHoaRoute);
 App.use(NapTienRoute);
 App.use(ChiTietMuaRoute);
+App.use(ThamGapRoute)
+App.use(AdminRoute)
 
 // // Connect to database
 // let conn = sql.createConnection(DatabaseConfig.mysql)

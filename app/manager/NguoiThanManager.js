@@ -24,10 +24,10 @@ export function AddNguoiThan (data, callback) {
 export function AddMultipleNguoiThan (data, callback) {
     try {
         NguoiThan.bulkCreate(data).then(nguoithan => {
-            "use-strict"
+            "use strict"
             return callback(null, null, 200, null, nguoithan);
         }).catch(function (error) {
-            "use-strict";
+            "use strict";
             return callback(2, 'add_nguoi_than_fail', 400, error, null);
         })
     } catch (error) {
@@ -58,7 +58,7 @@ export function UpdateNguoiThan (NguoiThanId, NguoiThanData, callback) {
 
         if (!Helper.VariableTypeChecker(NguoiThanId, 'string')
             && !Helper.VariableTypeChecker(NguoiThanId, 'number')) {
-            return callback (2, 'id_khu_nguoi_than_khong_hop_le', 400, 'id người thân không đúng', null)
+            return callback (2, 'id_nguoi_than_khong_hop_le', 400, 'id người thân không đúng', null)
         }
 
         if (!NguoiThanData) {
@@ -83,7 +83,7 @@ export function UpdateNguoiThan (NguoiThanId, NguoiThanData, callback) {
                     return callback(2, 'cập_nhật_người_thân_thất_bại', 400, error, null)
                 })
             } else {
-                return callback(2, 'khu_người_thân_không_hợp_lệ', 400, null, null);
+                return callback(2, 'người_thân_không_hợp_lệ', 400, null, null);
             }
         }).catch(function (error) {
             "use strict";

@@ -3,6 +3,13 @@ create database TTN2;
 use TTN2;
 show tables;
 
+create table Admin (
+    id int primary key auto_increment,
+    username varchar(255),
+    password varchar(255),
+    role varchar(255)
+);
+
 create table HocVien (
     cccd varchar(255) primary key ,
     NgayCapCCCD date,
@@ -233,6 +240,17 @@ create table NguoiThan (
     updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
 );
 
+create table ThamGap (
+    id int auto_increment primary key,
+    cccdHocVien varchar(255),
+    idNguoiThan int,
+    NgayThamGap date,
+    createdAt date,
+    createdBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+    updatedAt date,
+    updatedBy varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci
+);
+
 create table HangHoa (
     id int auto_increment primary key,
     TenHangHoa varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -300,6 +318,10 @@ alter table NapTien add constraint NapTien_HocVien foreign key (cccd) references
 
 alter table ChiTietMua add constraint ChiTietMua_HocVien foreign key (cccd) references HocVien(cccd);
 alter table ChiTietMua add constraint ChiTietMua_HangHoa foreign key (idHangHoa) references HangHoa(id);
+
+alter table ThamGap add constraint ThamGap_NguoiTham foreign key (idNguoiThan) references NguoiThan(id);
+alter table ThamGap add constraint ThamGap_HocVien foreign key (cccdHocVien) references HocVien(cccd);
+
 
 ################ Trigger Update SoDu ################
 DELIMITER //
@@ -369,6 +391,10 @@ insert into HangHoa (TenHangHoa, DonGia) value ('Trứng', 2000);
 insert into HangHoa (TenHangHoa, DonGia) value ('Sữa', 5000);
 
 insert into ChiTietMua(cccd, idHangHoa, SoLuong) value (1002, 3, 4);
+
+insert into Admin (username, password, role) value ('admin', '$2y$10$MMsUOL/txDHDa8e6CGzTVevYV6x0xwOt4E1370DS6j8Jzdm8xahfq', 'SUPER_ADMIN');
+
+select * from Admin;
 
 select * from HocVien;
 select * from HangHoa;
