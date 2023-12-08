@@ -14,7 +14,7 @@ export function Login (req, res) {
         if (errorCode) {
             return Rest.SendError (res, errorCode, errorMessage, httpCode, errorDescription);
         }
-        JsonWebToken.sign({id: result.id, username: result.username, role: result.role}, Global.jwtPublicKey.PublicKey, {expiresIn: '10s'}, function (error, token) {
+        JsonWebToken.sign({id: result.id, username: result.username, role: result.role}, Global.jwtPublicKey.PublicKey, {expiresIn: '1d'}, function (error, token) {
             if (error) {
                 return Rest.SendError(res, 4000, 'create_token_fail', 400, error);
             } else {
