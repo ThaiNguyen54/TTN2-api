@@ -32,7 +32,7 @@ export function Authenticate (username, password, callback) {
                     if (result === true) {
                         return callback(null, null, 200, null, account)
                     } else {
-                        return callback(1, 'wrong_password', 422, null, null);
+                        return callback(1, 'wrong_password', 422, 'Wrong password', null);
                     }
                 })
             } else {
@@ -44,5 +44,43 @@ export function Authenticate (username, password, callback) {
         });
     } catch (error) {
         return callback(1, 'authenticate_admin_fail', 400, error, null)
+    }
+}
+
+export function VerifyAdmin (AdminId, Role, Username, callback) {
+    try {
+        if ( !Helper.VariableTypeChecker(AdminId, 'string')
+            && !Helper.VariableTypeChecker(AdminId, 'number')) {
+
+            return callback(1, 'invalid_user_id', 400, 'admin id is incorrect', null);
+        }
+
+        // if (!Helper.VariableTypeChecker(Role, 'number')) {
+        //     return (1, 'invalid_admin_role', 400, 'admin role is incorrect', null);
+        // }
+
+        if (!Helper.VariableTypeChecker(Username, 'string')) {
+            return callback(1, 'invalid_user_name', 400, 'username is incorrect', null)
+        }
+
+        let where = {id: AdminId, username: Username, role: Role}
+        let attributes = ['id', 'username', 'role']
+
+        Admin.findOne({
+            where: where,
+            attributes: attributes
+        }).then(result => {
+            "use strict"
+            if(result) {
+                return callback(null, null, 200, null, result);
+            } else {
+                return callback(1, 'invalid admin', 405, null, null);
+            }
+        }).catch(function (error) {
+            "use strict"
+            return callback(1, 'find_admin_fail', 400, error, null)
+        })
+    } catch (error) {
+        return callback(1, 'find_admin_fail', 400, error, null)
     }
 }

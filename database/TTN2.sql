@@ -399,4 +399,5 @@ select * from Admin;
 select * from HocVien;
 select * from HangHoa;
 select * from ChiTietMua;
+select * from HV_CNTuNguyen;
 # delete from HocVien;

@@ -6,8 +6,8 @@ import * as TronVienPhepController from "../controller/TronVienPhepController.js
 
 const router = express.Router()
 
-router.post('/ttn2/v1/tronvienphep', TronVienPhepController.AddTronVienPhep);
-router.get('/ttn2/v1/tronvienphep', TronVienPhepController.GetAllTronVienPhep);
-router.put('/ttn2/v1/tronvienphep/:id', TronVienPhepController.UpdateTronVienPhep);
-router.delete('/ttn2/v1/tronvienphep/:id', TronVienPhepController.DeleteTronVienPhep);
+router.post('/ttn2/v1/auth/tronvienphep', TronVienPhepController.AddTronVienPhep);
+router.get('/ttn2/v1/auth/tronvienphep', TronVienPhepController.GetAllTronVienPhep);
+router.put('/ttn2/v1/auth/tronvienphep/:id', TronVienPhepController.UpdateTronVienPhep);
+router.delete('/ttn2/v1/auth/tronvienphep/:id', TronVienPhepController.DeleteTronVienPhep);
 export default router

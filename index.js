@@ -23,6 +23,7 @@ import NapTienRoute from "./app/route/NapTienRoute.js";
 import ChiTietMuaRoute from "./app/route/ChiTietMuaRoute.js";
 import ThamGapRoute from "./app/route/ThamGapRoute.js";
 import AdminRoute from "./app/route/AdminRoute.js";
+import * as ValidateMiddleware from './app/middlewares/ValidateRequest.js'
 
 let App = Express()
 
@@ -46,6 +47,8 @@ const corsOption = {
 };
 App.use(cors(corsOption))
 
+App.all('/ttn2/v1/auth/*', [ValidateMiddleware.Validate]);
+
 // Routes for APIs
 App.use(HocVienRoute);
 App.use(KhuSinhHoatRoute);
@@ -63,6 +66,7 @@ App.use(NapTienRoute);
 App.use(ChiTietMuaRoute);
 App.use(ThamGapRoute)
 App.use(AdminRoute)
+
 
 // // Connect to database
 // let conn = sql.createConnection(DatabaseConfig.mysql)
