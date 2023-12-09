@@ -12,10 +12,7 @@ export function Validate (req, res, next) {
         next();
     }
 
-    console.log(req.header)
-
     let token = (req.body && req.body.access_token) || req.headers['access_token'] || (req.query && req.query.access_token);
-
 
     if (token) {
         try {

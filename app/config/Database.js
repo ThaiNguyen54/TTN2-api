@@ -1,11 +1,14 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 let DBConnectorSetting = {
     mysql : {
-        host: 'thainguyenhome.ddns.net',
-        port: '3306',
-        user: 'thai',
-        password: 'thai',
-        database: 'TTN2',
-        dialect: 'mysql',
+        host: process.env.HOST,
+        port: process.env.PORT,
+        user: process.env.USER,
+        password: process.env.PASSWORD,
+        database: process.env.DATABASE,
+        dialect: process.env.DIALECT,
     }
 }
 
