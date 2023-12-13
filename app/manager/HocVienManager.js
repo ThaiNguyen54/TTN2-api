@@ -16,11 +16,13 @@ export async function AddHocVien(data, callback) {
             return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
         }
 
-        const res = await cloudinary.uploader.upload(data.HinhAnh, {
-            resource_type: 'auto',
-            folder: 'ttn2'
-        })
-        data.HinhAnh = res.secure_url
+        if (data.HinhAnh !== '' && data.HinhAnh !== null) {
+            const res = await cloudinary.uploader.upload(data.HinhAnh, {
+                resource_type: 'auto',
+                folder: 'ttn2'
+            })
+            data.HinhAnh = res.secure_url
+       }
 
         HocVien.create(data).then(hocvien => {
             "use strict";
@@ -30,6 +32,7 @@ export async function AddHocVien(data, callback) {
             return callback(2, 'add_hoc_vien_fail', 400, error, null);
         })
     } catch (error) {
+        console.log(error)
         return callback(2, 'add_hoc_vien_fail', 400, error, null);
     }
 }
