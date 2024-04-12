@@ -16,7 +16,7 @@ export async function AddHocVien(data, callback) {
             return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
         }
 
-        if (data.HinhAnh !== '' && data.HinhAnh !== null) {
+        if (data.HinhAnh !== '' && data.HinhAnh !== null && data.HinhAnh !== undefined) {
             const res = await cloudinary.uploader.upload(data.HinhAnh, {
                 resource_type: 'auto',
                 folder: 'ttn2'
