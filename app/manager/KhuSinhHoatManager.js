@@ -106,7 +106,7 @@ export function DeleteKhuSinhHoat (khuSinhHoatId, callback) {
         }
 
         where = {id: khuSinhHoatId};
-        queryObj = {deleted: DELETED.YES}
+        queryObj = {deleted: DELETED.YES};
 
         KhuSinhHoat.findOne({where:where}).then(khusinhhoat => {
             "use strict";
@@ -121,7 +121,6 @@ export function DeleteKhuSinhHoat (khuSinhHoatId, callback) {
                     "use strict";
                     return callback(null, null, 200, null);
                 }).catch(function (error) {
-                    console.log(error)
                     return callback(1, 'update_khusinhhoat_failed', 420, error);
                 })
             }

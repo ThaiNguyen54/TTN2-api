@@ -186,6 +186,10 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(1000),
         allowNull: true
     },
+    deleted: {
+        type: Sequelize.BIGINT(10),
+        allowNull: false
+    },
     createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -206,6 +210,7 @@ let HocVien = MySQLSequelize.define('HocVien', {
 }, {
     paranoid: false,
     freezeTableName: true,
+    includedDeleted: true,
     updatedAt: false,
     createdAt: false,
     tableName: 'HocVien'

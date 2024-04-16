@@ -7,6 +7,7 @@ import HocVien from "../models/HocVien.js";
 import DatabaseConfig from '../config/Database.js'
 import { v2 as cloudinary } from 'cloudinary'
 import CloudinaryConfig from "../config/Cloudinary.js";
+import {DELETED} from "../utils/Constants.js";
 
 cloudinary.config(CloudinaryConfig)
 
@@ -23,6 +24,7 @@ export async function AddHocVien(data, callback) {
             })
             data.HinhAnh = res.secure_url
        }
+        data.createdBy = data.AdminId;
 
         HocVien.create(data).then(hocvien => {
             "use strict";
@@ -38,11 +40,14 @@ export async function AddHocVien(data, callback) {
 }
 
 export function GetAll (callback) {
+    let where = {}
+    where = {deleted: DELETED.NO}
     try {
         HocVien.findAndCountAll({
             attributes: {
-                exclude: ['TenDayDu', 'createdBy', 'updatedAt', 'updatedBy']
-            }
+                exclude: ['TenDayDu', 'createdBy', 'updatedAt', 'updatedBy'],
+            },
+            where: where
         }).then((data) => {
             let HocVien = data.rows;
             let output = {
@@ -69,6 +74,7 @@ export async function FindAllAndCount(callback) {
       FROM HocVien
       LEFT JOIN HV_CNTuNguyen ON HocVien.cccd = HV_CNTuNguyen.cccd
       LEFT JOIN HV_CNBatBuoc ON HocVien.cccd = HV_CNBatBuoc.cccd
+      WHERE HocVien.deleted = 0
       GROUP BY HocVien.cccd;
     `;
         let conn = sql.createConnection(DatabaseConfig.mysql)
@@ -154,13 +160,24 @@ export function DeleteHocVien(cccd, callback) {
         }
 
         where = {cccd: cccd};
+        queryObj = {deleted: DELETED.YES};
+
         HocVien.findOne({where:where}).then(hocvien => {
             "use strict";
-            HocVien.destroy({where:where}).then(result => {
-                return callback(null, null, 200, null);
-            }).catch(function (error) {
-                return callback(2, 'remove_hocvien_failed', 420, error);
-            })
+            if (hocvien && hocvien.deleted === DELETED.YES) {
+                HocVien.destroy({where:where}).then(result => {
+                    return callback(null, null, 200, null);
+                }).catch(function (error) {
+                    return callback(2, 'remove_hocvien_failed', 420, error);
+                })
+            } else {
+                hocvien.update(queryObj, {where:where}).then(result => {
+                    "use strict";
+                    return callback(null, null, 200, null);
+                }).catch(function (error) {
+                   return callback(1, 'update_hocvien_fail', 420, error);
+                })
+            }
         }).catch(function (error) {
             "use strict";
             return callback(2, 'find_one_hocvien_failed', 400, error, null);
