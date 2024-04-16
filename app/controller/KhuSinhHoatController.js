@@ -6,6 +6,7 @@ import * as Rest from '../utils/Rest.js'
 
 export function AddKhuSinhHoat (req, res) {
 
+    console.log('this is req: ', req.body)
     KhuSinhHoatManager.AddKhuSinhHoat(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);

@@ -12,6 +12,10 @@ let KhuSinhHoat = MySQLSequelize.define('KhuSinhHoat', {
         type: Sequelize.STRING(255),
         allowNull: false,
     },
+    deleted: {
+        type: Sequelize.BIGINT(10),
+        allowNull: false
+    },
     createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -34,6 +38,7 @@ let KhuSinhHoat = MySQLSequelize.define('KhuSinhHoat', {
     freezeTableName: true,
     updatedAt: false,
     createdAt: false,
+    includedDeleted: true,
     tableName: 'KhuSinhHoat'
 })
 

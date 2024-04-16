@@ -10,3 +10,8 @@ export const STUDENT_IMAGE_FOLDER_DIR = {
 export const STUDENT_IAMGE_PREFIX = {
     prefix: 'HocVien'
 }
+
+export const DELETED = {
+    NO: 0,
+    YES: 1
+}

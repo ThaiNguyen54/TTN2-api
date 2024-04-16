@@ -5,15 +5,21 @@ import moment from 'moment';
 // Our components
 import * as Helper from '../utils/Helper.js'
 import KhuSinhHoat from "../models/KhuSinhHoat.js";
+import {DELETED} from '../utils/Constants.js';
 import HocVien from "../models/HocVien.js";
 import khuSinhHoat from "../models/KhuSinhHoat.js";
 export function AddKhuSinhHoat (data, callback) {
+    let queryObj = {}
     try {
         if ( !Helper.VariableTypeChecker(data.TenKhu, 'string')) {
             return callback(2, 'invalid_name', 400, 'Tên khu sinh hoạt phải là ký tự', null);
         }
 
-        KhuSinhHoat.create(data).then(khusinhoat => {
+        queryObj.TenKhu = data.TenKhu;
+        queryObj.deleted = data.deleted;
+        queryObj.createdBy = data.AdminId;
+
+        KhuSinhHoat.create(queryObj).then(khusinhoat => {
             "use strict";
             return callback(null, null, 200, null, khusinhoat);
         }).catch(function (error) {
@@ -26,9 +32,12 @@ export function AddKhuSinhHoat (data, callback) {
 }
 
 export function GetAllKhuSinhHoat (callback) {
+    let where = {}
+    where = {deleted: DELETED.NO}
     try {
         KhuSinhHoat.findAndCountAll({
-            attributes: ['id', 'TenKhu']
+            attributes: ['id', 'TenKhu'],
+            where: where
         }).then((data) => {
             let KhuSinhHoat = data.rows;
             let output = {
@@ -97,13 +106,25 @@ export function DeleteKhuSinhHoat (khuSinhHoatId, callback) {
         }
 
         where = {id: khuSinhHoatId};
+        queryObj = {deleted: DELETED.YES}
+
         KhuSinhHoat.findOne({where:where}).then(khusinhhoat => {
             "use strict";
-            KhuSinhHoat.destroy({where:where}).then(result => {
-                return callback(null, null, 200, null);
-            }).catch(function (error) {
-                return callback(2, 'remove_khusinhhoat_failed', 420, error);
-            })
+            if (khusinhhoat && khusinhhoat.deleted === DELETED.YES) {
+                KhuSinhHoat.destroy({where:where}).then(result => {
+                    return callback(null, null, 200, null);
+                }).catch(function (error) {
+                    return callback(2, 'remove_khusinhhoat_failed', 420, error);
+                })
+            } else {
+                KhuSinhHoat.update(queryObj, {where:where}).then(result => {
+                    "use strict";
+                    return callback(null, null, 200, null);
+                }).catch(function (error) {
+                    console.log(error)
+                    return callback(1, 'update_khusinhhoat_failed', 420, error);
+                })
+            }
         }).catch(function (error) {
             "use strict";
             return callback(2, 'find_one_khusinhhoat_failed', 400, error, null);
