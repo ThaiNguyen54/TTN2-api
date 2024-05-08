@@ -164,20 +164,26 @@ export function DeleteHocVien(cccd, callback) {
 
         HocVien.findOne({where:where}).then(hocvien => {
             "use strict";
-            if (hocvien && hocvien.deleted === DELETED.YES) {
-                HocVien.destroy({where:where}).then(result => {
-                    return callback(null, null, 200, null);
-                }).catch(function (error) {
-                    return callback(2, 'remove_hocvien_failed', 420, error);
-                })
-            } else {
-                hocvien.update(queryObj, {where:where}).then(result => {
-                    "use strict";
-                    return callback(null, null, 200, null);
-                }).catch(function (error) {
-                   return callback(1, 'update_hocvien_fail', 420, error);
-                })
-            }
+            HocVien.destroy({where: where}).then(result => {
+                return callback(null, null, 200, null)
+            }).catch(function (error) {
+                "use strict"
+                return callback(2, 'remove_failed', 420, error);
+            })
+            // if (hocvien && hocvien.deleted === DELETED.YES) {
+            //     HocVien.destroy({where:where}).then(result => {
+            //         return callback(null, null, 200, null);
+            //     }).catch(function (error) {
+            //         return callback(2, 'remove_hocvien_failed', 420, error);
+            //     })
+            // } else {
+            //     hocvien.update(queryObj, {where:where}).then(result => {
+            //         "use strict";
+            //         return callback(null, null, 200, null);
+            //     }).catch(function (error) {
+            //        return callback(1, 'update_hocvien_fail', 420, error);
+            //     })
+            // }
         }).catch(function (error) {
             "use strict";
             return callback(2, 'find_one_hocvien_failed', 400, error, null);

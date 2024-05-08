@@ -74,7 +74,7 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(255),
         allowNull: true
     },
-    TenKhac: {
+    MaHocVien : {
         type: Sequelize.STRING(255),
         allowNull: true
     },
