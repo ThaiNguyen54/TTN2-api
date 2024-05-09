@@ -9,12 +9,12 @@ let NapTien = MySQLSequelize.define('NapTien', {
         allowNull: false,
         primaryKey: true
     },
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         allowNull: false,
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     SoTienNap: {

@@ -9,12 +9,12 @@ let NguoiThan = MySQLSequelize.define('NguoiThan', {
         primaryKey: true,
         autoIncrement: true
     },
-    cccdHocVien: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         allowNull: false,
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     MoiQuanHe: {

@@ -11,8 +11,8 @@ import KhuSinhHoat from "../models/KhuSinhHoat.js";
 
 export function AddHocVien_CNBatBuoc (data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
+        if ( !Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien is not a string', null);
         }
 
         HocVien_CNBatBuoc.create(data).then(hocvien_cnbb => {
@@ -36,7 +36,7 @@ export function GetAllCNBB (callback) {
                     HocVien.Ten,
                     DATE_FORMAT(HV_CNBatBuoc.createdAt, "%Y-%m-%d") AS createdAt
               FROM HV_CNBatBuoc
-              INNER JOIN HocVien ON HV_CNBatBuoc.cccd = HocVien.cccd;`;
+              INNER JOIN HocVien ON HV_CNBatBuoc.MaHocVien = HocVien.MaHocVien;`;
 
         let conn = sql.createConnection(DatabaseConfig.mysql)
 

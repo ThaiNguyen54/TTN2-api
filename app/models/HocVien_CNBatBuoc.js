@@ -8,11 +8,11 @@ let HocVien_CNBatBuoc = MySQLSequelize.define('HV_CNBatBuoc', {
         allowNull: false,
         primaryKey: true
     },
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     LyDoGiam:{

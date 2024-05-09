@@ -10,7 +10,7 @@ export function AddHocVien (req, res) {
     req.body.Tuoi = Helper.GetAge(req.body.NgaySinh)
     HocVien.findOne({
         where: {
-            cccd: req.body.cccd
+            MaHocVien: req.body.MaHocVien
         }
     }).then(function (hocvien) {
         if (!hocvien) {
@@ -18,11 +18,11 @@ export function AddHocVien (req, res) {
                 if (errorCode) {
                     return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
                 } else {
-                    return Rest.SendSuccess(res, req.body.cccd, httpCode)
+                    return Rest.SendSuccess(res, req.body.MaHocVien, httpCode)
                 }
             })
         } else {
-            return Rest.SendSuccess(res, req.body.cccd, 200, 'Học Viên Đã Tồn Tại')
+            return Rest.SendSuccess(res, req.body.MaHocVien, 200, 'Học Viên Đã Tồn Tại')
         }
     })
 }
@@ -49,36 +49,36 @@ export function FindAllAndContCNHocVien (req, res) {
 
 
 export function UpdateHocVien (req, res) {
-    let cccd = req.params.cccd || '';
+    let MaHocVien = req.params.MaHocVien || '';
 
     let updateData = req.body || '';
 
-    const fieldToExclude = ['cccd', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'];
+    const fieldToExclude = ['MaHocVien', 'createdAt', 'createdBy', 'updatedAt', 'updatedBy'];
 
      updateData = Object.fromEntries(
         Object.entries(updateData).filter(([key]) => !fieldToExclude.includes(key))
     );
 
 
-    HVManager.UpdateHocVien(cccd, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
+    HVManager.UpdateHocVien(MaHocVien, updateData, function (errorCode, errorMessage, httpCode, errorDescription) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
         }
         let resData = {};
-        resData.cccd = cccd;
+        resData.MaHocVien = MaHocVien;
         return Rest.SendSuccess(res, resData, httpCode);
     })
 }
 
 export function DeleteHocVien (req, res) {
-    let cccd = req.params.cccd || '';
+    let MaHocVien = req.params.MaHocVien || '';
 
-    HVManager.DeleteHocVien(cccd, function (errorCode, errorMessage, httpCode, errorDescription){
+    HVManager.DeleteHocVien(MaHocVien, function (errorCode, errorMessage, httpCode, errorDescription){
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMessage, httpCode, errorDescription);
         }
         let resData = {};
-        resData.cccd = cccd;
+        resData.MaHocVien = MaHocVien;
         return Rest.SendSuccess(res, resData, httpCode);
     })
 }

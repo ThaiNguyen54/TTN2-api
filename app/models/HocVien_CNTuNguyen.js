@@ -9,11 +9,11 @@ let HocVien_CNTuNguyen = MySQLSequelize.define('HV_CNTuNguyen', {
         allowNull: false,
         primaryKey: true
     },
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     TuNguyenDongPhi: {

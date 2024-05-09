@@ -6,11 +6,11 @@ import * as Rest from '../utils/Rest.js'
 
 export function AddHangHoa (req, res) {
 
-    HangHoaManager.AddHangHoa(req.body, function (errorCode, errorMess, httpCode, errorDescription, hocvien) {
+    HangHoaManager.AddHangHoa(req.body, function (errorCode, errorMess, httpCode, errorDescription, hanghoa) {
         if (errorCode) {
             return Rest.SendError(res, errorCode, errorMess, httpCode, errorDescription);
         } else {
-            return Rest.SendSuccess(res, req.body.cccd, httpCode)
+            return Rest.SendSuccess(res, req.body.id, httpCode)
         }
     })
 }

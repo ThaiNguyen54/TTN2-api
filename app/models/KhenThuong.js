@@ -11,11 +11,11 @@ let KhenThuong = MySQLSequelize.define('KhenThuong', {
         allowNull: false,
         primaryKey: true
     },
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     SoQuyetDinhKhenThuong: {

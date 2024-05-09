@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 import MySQLSequelize from "../utils/Sequelize.js";
 
 let HocVien = MySQLSequelize.define('HocVien', {
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         primaryKey: true
     },
@@ -71,10 +71,6 @@ let HocVien = MySQLSequelize.define('HocVien', {
         allowNull: true
     },
     TienSu: {
-        type: Sequelize.STRING(255),
-        allowNull: true
-    },
-    MaHocVien : {
         type: Sequelize.STRING(255),
         allowNull: true
     },

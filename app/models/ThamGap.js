@@ -10,12 +10,12 @@ let ThamGap = MySQLSequelize.define('ThamGap', {
         primaryKey: true,
         autoIncrement: true
     },
-    cccdHocVien: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         allowNull: false,
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     idNguoiThan: {

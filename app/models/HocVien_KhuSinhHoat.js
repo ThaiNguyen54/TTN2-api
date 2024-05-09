@@ -18,11 +18,11 @@ let HocVien_KhuSinhHoat = MySQLSequelize.define('HocVien_KhuSinhHoat', {
         }
 
     },
-    cccd: {
+    MaHocVien: {
         type: Sequelize.STRING(255),
         references: {
             model: HocVien,
-            key: 'cccd'
+            key: 'MaHocVien'
         }
     },
     NgayBatDauO: {

@@ -10,8 +10,8 @@ import DatabaseConfig from "../config/Database.js";
 
 export function AddHocVien_CNTuNguyen (data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
+        if ( !Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien is not a string', null);
         }
 
         HocVien_CNTuNguyen.create(data).then(hocvien_cntn => {
@@ -36,7 +36,7 @@ export function GetAllCNTN (callback) {
                DATE_FORMAT(HV_CNTuNguyen.NgayCapGiayHoanThanh, "%Y-%m-%d") AS  NgayCapGiayHoanThanh,
                DATE_FORMAT(HV_CNTuNguyen.NgayBatDauCaiNghien, "%Y-%m-%d") AS  NgayBatDauCaiNghien
         from HV_CNTuNguyen
-        inner  join HocVien on HV_CNTuNguyen.cccd = HocVien.cccd;`
+        inner  join HocVien on HV_CNTuNguyen.MaHocVien = HocVien.MaHocVien;`
 
         let conn = sql.createConnection(DatabaseConfig.mysql)
 

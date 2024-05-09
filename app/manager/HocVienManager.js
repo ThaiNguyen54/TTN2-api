@@ -13,8 +13,8 @@ cloudinary.config(CloudinaryConfig)
 
 export async function AddHocVien(data, callback) {
     try {
-        if (!Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
+        if (!Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien is not a string', null);
         }
 
         if (data.HinhAnh !== '' && data.HinhAnh !== null && data.HinhAnh !== undefined) {
@@ -66,16 +66,16 @@ export async function FindAllAndCount(callback) {
     try {
         const queryString = `
       SELECT HocVien.*, 
-             COUNT(HV_CNTuNguyen.cccd) AS Count_CNTuNguyen,
-             COUNT(HV_CNBatBuoc.cccd) AS Count_CNBatBuoc,
+             COUNT(HV_CNTuNguyen.MaHocVien) AS Count_CNTuNguyen,
+             COUNT(HV_CNBatBuoc.MaHocVien) AS Count_CNBatBuoc,
              DATE_FORMAT(HocVien.NgayCapCCCD, "%Y-%m-%d") AS NgayCapCCCD,
              DATE_FORMAT(HocVien.NgaySinh, "%Y-%m-%d") AS NgaySinh,
              DATE_FORMAT(HocVien.createdAt, "%Y-%m-%d") AS createdAt
       FROM HocVien
-      LEFT JOIN HV_CNTuNguyen ON HocVien.cccd = HV_CNTuNguyen.cccd
-      LEFT JOIN HV_CNBatBuoc ON HocVien.cccd = HV_CNBatBuoc.cccd
+      LEFT JOIN HV_CNTuNguyen ON HocVien.MaHocVien = HV_CNTuNguyen.MaHocVien
+      LEFT JOIN HV_CNBatBuoc ON HocVien.MaHocVien = HV_CNBatBuoc.MaHocVien
       WHERE HocVien.deleted = 0
-      GROUP BY HocVien.cccd;
+      GROUP BY HocVien.MaHocVien;
     `;
         let conn = sql.createConnection(DatabaseConfig.mysql)
 
@@ -98,13 +98,13 @@ export async function FindAllAndCount(callback) {
     }
 }
 
-export async function UpdateHocVien(cccd, hocVienData, callback) {
+export async function UpdateHocVien(MaHocVien, hocVienData, callback) {
     try {
         let queryObj = {};
         let where = {};
 
-        if (!Helper.VariableTypeChecker(cccd, 'string')
-            && !Helper.VariableTypeChecker(cccd, 'number')) {
+        if (!Helper.VariableTypeChecker(MaHocVien, 'string')
+            && !Helper.VariableTypeChecker(MaHocVien, 'number')) {
             return callback(2, 'id_hoc_vien_khong_hop_le', 400, 'id học viên không đúng', null)
         }
 
@@ -112,7 +112,7 @@ export async function UpdateHocVien(cccd, hocVienData, callback) {
             return callback(2, 'dữ liệu truyền vào không đúng', 400, null)
         }
 
-        where.cccd = cccd;
+        where.MaHocVien = MaHocVien;
         queryObj.updatedAt = new Date();
         queryObj = hocVienData
 
@@ -132,7 +132,7 @@ export async function UpdateHocVien(cccd, hocVienData, callback) {
                     {where:where}
                 ).then(result => {
                     console.log(result)
-                    return callback(null, null, 200, null, cccd)
+                    return callback(null, null, 200, null, MaHocVien)
                 }).catch(function (error) {
                     "use strict"
                     return callback(2, 'cập_nhật_học_viên_thất_bại', 400, error, null)
@@ -149,17 +149,17 @@ export async function UpdateHocVien(cccd, hocVienData, callback) {
     }
 }
 
-export function DeleteHocVien(cccd, callback) {
+export function DeleteHocVien(MaHocVien, callback) {
     try {
         let queryObj = {};
         let where = {};
 
-        if (!Helper.VariableTypeChecker(cccd, 'string') &&
-            !Helper.VariableTypeChecker(cccd, 'number')) {
+        if (!Helper.VariableTypeChecker(MaHocVien, 'string') &&
+            !Helper.VariableTypeChecker(MaHocVien, 'number')) {
             return callback(2, 'ivalid_hocvien_id', 400, 'id of hoc vien is incorrect', null);
         }
 
-        where = {cccd: cccd};
+        where = {MaHocVien: MaHocVien};
         queryObj = {deleted: DELETED.YES};
 
         HocVien.findOne({where:where}).then(hocvien => {

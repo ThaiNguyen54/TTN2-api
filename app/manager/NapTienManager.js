@@ -8,8 +8,8 @@ import NapTien from "../models/NapTien.js";
 
 export function AddNapTien (data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd phải là ký tự', null);
+        if ( !Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien phải là ký tự', null);
         }
 
         NapTien.create(data).then(naptien => {

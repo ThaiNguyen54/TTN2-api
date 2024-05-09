@@ -8,8 +8,8 @@ import MoiQuanHe from "../models/MoiQuanHe.js";
 
 export function AddMoiQuanHe (data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd is not a string', null);
+        if ( !Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien is not a string', null);
         }
 
         MoiQuanHe.create(data).then(moiquanhe => {

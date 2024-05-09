@@ -9,8 +9,8 @@ import ChiTietMua from "../models/ChiTietMua.js";
 
 export function AddChiTietMua (data, callback) {
     try {
-        if ( !Helper.VariableTypeChecker(data.cccd, 'string')) {
-            return callback(2, 'invalid_cccd', 400, 'cccd phải là ký tự', null);
+        if ( !Helper.VariableTypeChecker(data.MaHocVien, 'string')) {
+            return callback(2, 'invalid_MaHocVien', 400, 'MaHocVien phải là ký tự', null);
         }
 
         ChiTietMua.create(data).then(chitietmua => {
