@@ -6,6 +6,10 @@ let HocVien = MySQLSequelize.define('HocVien', {
         type: Sequelize.STRING(255),
         primaryKey: true
     },
+    CCCD: {
+        type: Sequelize.STRING(255),
+        allowNull: true
+    },
     NgayCapCCCD: {
         type: Sequelize.DATE,
         allowNull: true,
