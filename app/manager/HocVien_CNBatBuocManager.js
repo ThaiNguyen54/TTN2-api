@@ -34,7 +34,18 @@ export function GetAllCNBB (callback) {
                     HV_CNBatBuoc.*,
                     HocVien.Ho,
                     HocVien.Ten,
-                    DATE_FORMAT(HV_CNBatBuoc.createdAt, "%Y-%m-%d") AS createdAt
+                    DATE_FORMAT(HV_CNBatBuoc.createdAt, "%Y-%m-%d") AS createdAt,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayCoKetQuaNghien, "%Y-%m-%d") AS NgayCoKetQuaNghien,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayHoanThanhXacDinhTinhTrangNghien, "%Y-%m-%d") AS NgayHoanThanhXacDinhTinhTrangNghien,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayKyQuyetDinhTamGiu, "%Y-%m-%d") AS NgayKyQuyetDinhTamGiu,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayKyQuyetDinh, "%Y-%m-%d") AS NgayKyQuyetDinh,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayGiaoTaiSan, "%Y-%m-%d") AS NgayGiaoTaiSan,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayHop, "%Y-%m-%d") AS NgayHop,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayDiLy, "%Y-%m-%d") AS NgayDiLy,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayNhapLaiCatGiam, "%Y-%m-%d") AS NgayNhapLaiCatGiam,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayChuyenCoSo, "%Y-%m-%d") AS NgayChuyenCoSo,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayChuyenVien, "%Y-%m-%d") AS NgayChuyenVien,
+                    DATE_FORMAT(HV_CNBatBuoc.NgayNhapLai, "%Y-%m-%d") AS NgayNhapLai
               FROM HV_CNBatBuoc
               INNER JOIN HocVien ON HV_CNBatBuoc.MaHocVien = HocVien.MaHocVien;`;
 
